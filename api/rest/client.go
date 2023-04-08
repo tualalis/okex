@@ -29,7 +29,7 @@ type ClientRest struct {
 	passphrase  string
 	destination okex.Destination
 	baseURL     okex.BaseURL
-	client      *http.Client
+	Client      *http.Client
 }
 
 // NewClient returns a pointer to a fresh ClientRest
@@ -40,7 +40,7 @@ func NewClient(apiKey, secretKey, passphrase string, baseURL okex.BaseURL, desti
 		passphrase:  passphrase,
 		baseURL:     baseURL,
 		destination: destination,
-		client:      http.DefaultClient,
+		Client:      http.DefaultClient,
 	}
 	c.Account = NewAccount(c)
 	c.SubAccount = NewSubAccount(c)
@@ -105,7 +105,7 @@ func (c *ClientRest) Do(method, path string, private bool, params ...map[string]
 	if c.destination == okex.DemoServer {
 		r.Header.Add("x-simulated-trading", "1")
 	}
-	return c.client.Do(r)
+	return c.Client.Do(r)
 }
 
 // Status
