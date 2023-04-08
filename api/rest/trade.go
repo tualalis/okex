@@ -177,7 +177,7 @@ func (c *Trade) GetOrderList(req requests.OrderList) (response responses.OrderLi
 func (c *Trade) GetOrderHistory(req requests.OrderList, arch bool) (response responses.OrderList, err error) {
 	p := "/api/v5/trade/orders-history"
 	if arch {
-		p = "/api/trade/orders-history-archive"
+		p = "/api/v5/trade/orders-history-archive"
 	}
 	m := okex.S2M(req)
 	res, err := c.client.Do(http.MethodGet, p, true, m)
@@ -201,7 +201,7 @@ func (c *Trade) GetOrderHistory(req requests.OrderList, arch bool) (response res
 func (c *Trade) GetTransactionDetails(req requests.TransactionDetails, arch bool) (response responses.TransactionDetail, err error) {
 	p := "/api/v5/trade/fills"
 	if arch {
-		p = "/api/trade/fills-history"
+		p = "/api/v5/trade/fills-history"
 	}
 	m := okex.S2M(req)
 	res, err := c.client.Do(http.MethodGet, p, true, m)
