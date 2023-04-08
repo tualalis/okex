@@ -239,3 +239,22 @@ func (c *PublicData) GetUnderlying(req requests.GetUnderlying) (response respons
 	err = d.Decode(&response)
 	return
 }
+
+// GetFundingRate
+// Retrieve mark price.
+//
+// We set the mark price based on the SPOT index and at a reasonable basis to prevent individual users from manipulating the market and causing the contract price to fluctuate.
+//
+// https://www.okex.com/docs-v5/en/#rest-api-public-data-get-funding-rate
+func (c *PublicData) GetFundingRate(req requests.GetFundingRate) (response responses.GetFundingRate, err error) {
+	p := "/api/v5/public/funding-rate"
+	m := okex.S2M(req)
+	res, err := c.client.Do(http.MethodGet, p, false, m)
+	if err != nil {
+		return
+	}
+	defer res.Body.Close()
+	d := json.NewDecoder(res.Body)
+	err = d.Decode(&response)
+	return
+}
