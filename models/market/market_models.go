@@ -55,20 +55,23 @@ type (
 		OrderNumbers    int
 	}
 	Candle struct {
-		O      float64
-		H      float64
-		L      float64
-		C      float64
-		Vol    float64
-		VolCcy float64
-		TS     okex.JSONTime
+		TS          okex.JSONTime
+		O           float64
+		H           float64
+		L           float64
+		C           float64
+		Vol         float64
+		VolCcy      float64
+		VolCcyQuote float64
+		Confirm     float64
 	}
 	IndexCandle struct {
-		O  float64
-		H  float64
-		L  float64
-		C  float64
-		TS okex.JSONTime
+		TS      okex.JSONTime
+		O       float64
+		H       float64
+		L       float64
+		C       float64
+		Confirm float64
 	}
 	Trade struct {
 		InstID  string           `json:"instId"`
